@@ -39,6 +39,7 @@ class Input extends React.Component {
             onChange={this.onValueChange}
             //onClick={e => alert('Hola')} 
             value={inputValue} 
+            //value='hola'
             placeholder={this.props.placeholder}/>
         )
     }
