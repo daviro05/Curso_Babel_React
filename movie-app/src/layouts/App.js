@@ -4,7 +4,7 @@ import Header from '../components/Header'
 
 const App = props => {
     return (
-        <section class="main-section">
+        <section className="main-section">
             <div className="container-fluid">
                 <Header />
             </div>

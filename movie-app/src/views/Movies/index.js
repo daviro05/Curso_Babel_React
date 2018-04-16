@@ -1,28 +1,59 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Movie from '../../components/Movie'
+
+import * as moviesActions from '../../actions/moviesActions'
 
 class Movies extends React.Component {
     constructor(props) {
         super(props) 
 
         this.state = {
-            movies: []
+            movies: [],
+            page: 1,
+            loadingMovies: false
         }
     }
 
     componentDidMount(){
-        fetch('https://api.themoviedb.org/3/discover/movie?api_key='+process.env.REACT_APP_TMDB_API_KEY)
-        .then(response => response.json())
-        .then(json => json.results)
-        .then(data => this.setState({movies: data}))
-        .catch(error => alert('We could not load the page at this time.'))
-        window.addEventListener("scroll", function(e) {
-            const scrollTop = this.scrollY
-            const trackLength = document.querySelector('body').scrollHeight - window.innerHeight
-            const pctScrolled = Math.floor(scrollTop/trackLength * 100)
-            console.log(pctScrolled + '% scrolled')
-        }, false);
+        const { movies } = this.state
+        const { moviesActions } = this.props
+
+        moviesActions.loadMovies()
+
+        window.addEventListener("scroll", this.infiniteScroller, false);
+    }
+
+    infiniteScroller =  e => {
+        const { page } = this.state
+        const { moviesActions } = this.props
+        const scrollTop = window.scrollY
+        const trackLength = document.querySelector('body').scrollHeight - window.innerHeight
+        const pctScrolled = Math.floor(scrollTop/trackLength * 100)
+        if(pctScrolled > 95 && !this.state.loadingMovies) {
+            moviesActions.loadMovies(page)
+            this.setState({
+                loadingMovies: true
+            })
+        }
+    }
+
+    componentWillUnmount() {
+        // you need to unbind the same listener that was binded.
+        window.removeEventListener('scroll', this.infiniteScroller, false);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.movies.length > this.state.movies.length) {
+            this.setState({
+                loadingMovies: false,
+                page: this.state.page + 1,
+                movies: nextProps.movies
+            })
+        }
     }
 
     render() {
@@ -50,4 +81,17 @@ class Movies extends React.Component {
     }
 }
 
-export default Movies
+function mapStateToProps(state, ownProps){
+    return {
+        movies: state.movies
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        moviesActions: bindActionCreators(moviesActions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)
+

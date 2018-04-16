@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -6,7 +7,7 @@ import Movie from '../../components/Movie'
 
 import * as moviesActions from '../../actions/moviesActions'
 
-class Home extends React.Component {
+class TopMovies extends React.Component {
     constructor(props) {
         super(props) 
 
@@ -21,7 +22,7 @@ class Home extends React.Component {
         const { movies } = this.state
         const { moviesActions } = this.props
 
-        moviesActions.loadComingSoon()
+        moviesActions.topMovies()
 
         window.addEventListener("scroll", this.infiniteScroller, false);
     }
@@ -33,7 +34,7 @@ class Home extends React.Component {
         const trackLength = document.querySelector('body').scrollHeight - window.innerHeight
         const pctScrolled = Math.floor(scrollTop/trackLength * 100)
         if(pctScrolled > 95 && !this.state.loadingMovies) {
-            moviesActions.loadComingSoon(page)
+            moviesActions.topMovies(page)
             this.setState({
                 loadingMovies: true
             })
@@ -55,14 +56,15 @@ class Home extends React.Component {
         }
     }
 
-    render () {
+
+    render() {
         const { movies } = this.state
 
         return (
-            <section className="container main home">
+            <section className="container main movies">
                 <header className="row">
                     <div className="col-12">
-                        <h1>Coming Soon</h1>
+                        <h1>{movies.length > 0 ? 'Top Movies' : 'Loading...'}</h1>
                     </div>
                 </header>
                 <div className="row movie-list-wrapper">
@@ -92,5 +94,5 @@ function mapDispatchToProps(dispatch){
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(TopMovies)
 
