@@ -1,18 +1,10 @@
-import * as types from '../types/movies'
+import * as types from '../types/movie'
 import initialState from './initialState'
 
-export default function movieReducer(state = initialState.movies, action){
+export default function movieReducer(state = initialState.movie, action){
     switch(action.type){
-        case types.LOAD_MOVIES_SUCCESS:
-            if(action.page === 1) {
-                return action.movies
-            }
-            else {
-                return [
-                    ...state,
-                    ...action.movies,
-                ]
-            }
+        case types.LOAD_MOVIE_SUCCESS:
+            return action.movie
         default:
         return state
   }

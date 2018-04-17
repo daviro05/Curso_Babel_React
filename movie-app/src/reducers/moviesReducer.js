@@ -4,6 +4,7 @@ import initialState from './initialState'
 export default function moviesReducer(state = initialState.movies, action){
     switch(action.type){
         case types.LOAD_MOVIES_SUCCESS:
+        console.log(action.page)
             if(action.page === 1) {
                 return action.movies
             }

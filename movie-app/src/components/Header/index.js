@@ -30,7 +30,7 @@ class Header extends React.Component {
                 <div className="logo-wrapper d-flex">
                     <img src={logo} alt="TMDB"/>
                     {numberOfMovies > 0 && <h1 style={{color: 'white'}}>{numberOfMovies}</h1>}
-                    {titleOfMovie != '' && <h1 style={{color: 'white'}}>{titleOfMovie}</h1>}
+                    {titleOfMovie !== '' && <h1 style={{color: 'white'}}>{titleOfMovie}</h1>}
                 </div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,8 @@ class Header extends React.Component {
 
 function mapStateToProps(state, ownProps){
     return {
-        numberOfMovies: state.movies.length
+        numberOfMovies: state.movies.length,
+        titleOfMovie: state.movie.title
     }
 }
 
