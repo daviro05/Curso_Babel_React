@@ -100,7 +100,7 @@ class Movies extends React.Component {
         else{
             this.setState({ 
                 marcado_anio: false,
-                movies: _.filter(this.state.movies, function(o) {return true }) 
+                movies: this.props.movies
 
             });
         }
