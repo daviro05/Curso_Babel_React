@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 
 import * as movieActions from '../../actions/movieActions'
@@ -45,9 +46,18 @@ class Movie extends React.Component {
                         <p className="d-block">{movie.overview}</p>
                     </div>
                 </article>
-                <button>Similares</button>
-                <button>Recomendaciones</button>
+                <button>
+                <Link className="d-block" to={`/movies/${movie.id}/similares`}>Similares</Link>
+                </button>
+                <button>
+                <Link className="d-block" to={`/movies/${movie.id}/recomendadas`}>Recomendaciones</Link>
+                </button>
                 <button>Comentarios</button>
+
+                <div className="coment">
+                    <textarea name="" className="comentario" cols="100" rows="5"></textarea>
+                    <p><button onClick="">Comentar</button></p>
+                </div>
             </section>
         )
     }

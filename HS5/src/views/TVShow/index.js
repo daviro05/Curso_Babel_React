@@ -1,8 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as tvShowActions from '../../actions/tvShowActions'
+
+import MovieTvShow from '../../components/MovieTvShow'
 
 class TVShow extends React.Component {
     constructor(props) {
@@ -22,6 +25,14 @@ class TVShow extends React.Component {
     componentWillReceiveProps({tvshow}) {
         this.setState({tvshow})
     }
+
+
+    hacerComentario = e => {
+        const { tvShowActions, match } = this.props
+        console.log(e)
+       
+    }
+
 
     render() {
         const { tvshow } = this.state
@@ -45,9 +56,20 @@ class TVShow extends React.Component {
                         <p className="d-block">{tvshow.overview}</p>
                     </div>
                 </article>
-                <button>Similares</button>
-                <button onClick={() => tvShowActions.TvShowRecomendada(tvshow.id)}>Recomendaciones</button>
+                <button>
+                <Link className="d-block" to={`/tvshows/${tvshow.id}/similares`}>Similares</Link>
+                </button>
+                <button>
+                <Link className="d-block" to={`/tvshows/${tvshow.id}/recomendadas`}>Recomendaciones</Link>
+                </button>
                 <button>Comentarios</button>
+
+                
+                <div className="coment">
+                    <textarea name="" className="comentario" cols="100" rows="5"></textarea>
+                    <p><button onClick={() => this.hacerComentario({name: tvshow.name})}>Comentar</button></p>
+                </div>
+
             </section>
         )
     }

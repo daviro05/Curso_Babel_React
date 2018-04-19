@@ -31,6 +31,20 @@ export function loadMovies(page = 1, endpoint = 'popular'){
     }
 }
 
+export function moviesOptions(id = 1, endpoint = 'similares', page = 1){
+    console.log("Peticion a moviesOptions " + moviesURL[endpoint](id))
+    return dispatch => {
+        fetch(moviesURL[endpoint](id))
+        .then(response => response.json())
+        .then(json => json.results)
+        .then(movies => dispatch(loadMoviesSuccess(movies, page)))
+        .catch(error => {
+            dispatch(loadMoviesFailure())
+            alert('We could not load the page at this time.')
+        })
+    }
+}
+
 
 
 
