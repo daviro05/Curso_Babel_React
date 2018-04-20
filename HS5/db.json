@@ -38,6 +38,13 @@
       "user": "David",
       "tipo": "tvshow",
       "id": 6
+    },
+    {
+      "tvShowId": "1412",
+      "body": "Me encanta esta serie",
+      "user": "Juan",
+      "tipo": "tvshow",
+      "id": 7
     }
   ]
 }

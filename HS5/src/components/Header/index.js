@@ -10,18 +10,20 @@ class Header extends React.Component {
         super(props)
         
         this.state = {
-            numberOfMovies: props.numberOfMovies
+            numberOfMovies: props.numberOfMovies,
+            MoviesyShows: props.MoviesyShows
         }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            numberOfMovies: nextProps.numberOfMovies
+            numberOfMovies: nextProps.numberOfMovies,
+            MoviesyShows: nextProps.MoviesyShows
         })
     }
 
     render() {
-        const { numberOfMovies } = this.state
+        const { numberOfMovies, MoviesyShows } = this.state
         return (
             <div className="row">
             <header className="main-nav d-flex col-12" style={{flexDirection: 'column'}}>
@@ -33,12 +35,9 @@ class Header extends React.Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-    
+
                     <div className="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                         <ul className="navbar-nav">
-{/*                             <li className="nav-item">
-                                <Link className="nav-link" to={`/`}>Home</Link>
-                            </li> */}
                             <li className="nav-item">
                                 <Link className="nav-link" to={`/movies`}>Movies</Link>
                             </li>
@@ -47,8 +46,18 @@ class Header extends React.Component {
                             </li>
                         </ul>
                     </div>
+
+                     <div className="navbar-form" role="search">
+                        <div className="input-group add-on">
+                        <input className="form-control" placeholder="Buscar" name="srch-term" id="srch-term" type="text"/>
+                    </div>
+                    </div>
+
                 </nav>
             </header>
+            <div>
+            {MoviesyShows}
+            </div>
         </div>
         )
     }
@@ -57,6 +66,7 @@ class Header extends React.Component {
 function mapStateToProps(state, ownProps){
     return {
         numberOfMovies: state.movies.length
+        //MoviesyShows: state.movies
     }
 }
 
