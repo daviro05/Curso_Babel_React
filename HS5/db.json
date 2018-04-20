@@ -45,6 +45,41 @@
       "user": "Juan",
       "tipo": "tvshow",
       "id": 7
+    },
+    {
+      "tvShowId": "1412",
+      "body": "No está mal la serie",
+      "user": "Patricia",
+      "tipo": "tvshow",
+      "id": 8
+    },
+    {
+      "movieId": "299536",
+      "body": "Tengo muchas ganas de ver la peli",
+      "user": "David",
+      "tipo": "movie",
+      "id": 9
+    },
+    {
+      "movieId": "447332",
+      "body": "Voy a ir a verla el miércoles!",
+      "user": "Paco",
+      "tipo": "movie",
+      "id": 10
+    },
+    {
+      "movieId": "447332",
+      "body": "Perfecta para ir con la novia... ",
+      "user": "Marcos",
+      "tipo": "movie",
+      "id": 11
+    },
+    {
+      "tvShowId": "1396",
+      "body": "La mejor serie de todos los tiempos!",
+      "user": "Pedro",
+      "tipo": "tvshow",
+      "id": 12
     }
   ]
 }
