@@ -43,6 +43,28 @@ export function loadMovieRandom(){
     }
 }
 
+export function comentar(id, comentario, username){
+    console.log("Entra en comentar")
+    const objeto = {movieId: id, body: comentario, user: username, tipo: 'movie'}
+    return dispatch => {
+        fetch(moviesURL['comentarios'](id),
+        {
+            method: 'post',
+            headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(objeto)
+        })        
+    }
+}
+
+export function obtenerComentarios(){
+    console.log("Obteniendo comentarios")
+    
+    
+}
+
 
 
 

@@ -22,6 +22,12 @@ class TVShows extends React.Component {
         }
     }
 
+    deleteTvShow = e => {
+        const {tvShowsActions} = this.props
+        const id = e.target.dataset.id;
+        tvShowsActions.deleteTvShow(id);
+    }
+
     componentDidMount(){
         const { tvshows, nowViewing, page } = this.state
         const { tvShowsActions } = this.props
@@ -148,6 +154,7 @@ class TVShows extends React.Component {
                 <div className="row movie-list-wrapper">
                     {this.prepareMovies(tvshows).map((tvshow, i) => {
                         tvshow.tipo = 'tvshows'
+                        tvshow.func = this.deleteTvShow
                         return (
                             <MovieTvShow
                                 key={i}

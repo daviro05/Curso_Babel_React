@@ -29,8 +29,9 @@ class TVShow extends React.Component {
 
     hacerComentario = e => {
         const { tvShowActions, match } = this.props
-        console.log(e)
-       
+        const comentario = document.querySelector(".comentario").value;
+        const user = document.querySelector(".user").value;
+        tvShowActions.comentar(match.params.id, comentario, user )      
     }
 
 
@@ -62,12 +63,14 @@ class TVShow extends React.Component {
                 <button>
                 <Link className="d-block" to={`/tvshows/${tvshow.id}/recomendadas`}>Recomendaciones</Link>
                 </button>
-                <button>Comentarios</button>
+                <button><Link className="d-block" to={`/tvshows/${tvshow.id}/comentarios`}>Comentarios</Link>
+                </button>
 
                 
                 <div className="coment">
-                    <textarea name="" className="comentario" cols="100" rows="5"></textarea>
-                    <p><button onClick={() => this.hacerComentario({name: tvshow.name})}>Comentar</button></p>
+                    <p><input type="text" className="user" id="" placeholder="username" required/></p>
+                    <textarea className="comentario" cols="100" rows="5" placeholder="Añadir comentario" required></textarea>
+                    <p><button onClick={() => this.hacerComentario()}>Comentar</button></p>
                 </div>
 
             </section>

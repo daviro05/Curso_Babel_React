@@ -1,5 +1,43 @@
 {
-    "comments": [ 
-        { "id": 1, "body": "some comment", "movieId": 1 }
-    ]
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "movieId": 1
+    },
+    {
+      "tvShowId": "1412",
+      "body": "dgsadg",
+      "user": "david",
+      "id": 2
+    },
+    {
+      "tvShowId": "1412",
+      "body": "Mi comentario sobre Arrow",
+      "user": "Pepito",
+      "tipo": "tvshow",
+      "id": 3
+    },
+    {
+      "movieId": "447332",
+      "body": "Esta peli da mucho miedo!",
+      "user": "David",
+      "tipo": "movie",
+      "id": 4
+    },
+    {
+      "tvShowId": "1412",
+      "body": "Otro comentario de Arrow",
+      "user": "Pedrito",
+      "tipo": "tvshow",
+      "id": 5
+    },
+    {
+      "tvShowId": "1412",
+      "body": "Tercer comentario sobre Arrow",
+      "user": "David",
+      "tipo": "tvshow",
+      "id": 6
+    }
+  ]
 }

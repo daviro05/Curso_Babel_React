@@ -13,8 +13,16 @@ export function deleteMovieSuccess(id){
     return { type: types.DELETE_MOVIES_SUCCESS , id}
 }
 
+export function loadCommentsSuccess(comments){
+    return { type: types.LOAD_COMMENTS_SUCCESS, comments}
+}
+
 export function deleteMovie(id){
-   deleteMovieSuccess(id);
+
+    return dispatch => {
+        console.log("Entra en el dispatch")
+        dispatch(deleteMovieSuccess(id))
+    }
 }
 
 
@@ -45,6 +53,15 @@ export function moviesOptions(id = 1, endpoint = 'similares', page = 1){
     }
 }
 
+export function obtenerComentarios(id){
+    console.log("Entramos en obtener comentarios de movies")
+    return dispatch => {
+        fetch(moviesURL['obtenerComentarios'](id))
+        .then(response => response.json())
+        .then(comments => dispatch(loadCommentsSuccess(comments)))
+
+    }
+}
 
 
 

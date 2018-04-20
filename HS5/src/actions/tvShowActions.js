@@ -35,6 +35,22 @@ export function TvShowRecomendada(id){
     }
 }
 
+export function comentar(id, comentario, username){
+    console.log("Entra en comentar")
+    const objeto = {tvShowId: id, body: comentario, user: username, tipo: 'tvshow'}
+    return dispatch => {
+        fetch(tvShowsURL['comentarios'](id),
+        {
+            method: 'post',
+            headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(objeto)
+        })        
+    }
+}
+
 
 
 

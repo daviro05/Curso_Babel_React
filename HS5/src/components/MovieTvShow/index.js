@@ -5,7 +5,7 @@ import * as moviesActions from '../../actions/moviesActions'
 import * as tvShowsActions from '../../actions/tvShowsActions'
 
 
-const MovieTvShow = ({tipo, poster_path, id, title, overview, name}) => (
+const MovieTvShow = ({tipo, poster_path, id, title, overview, name, func}) => (
 
     <article 
         className="col-md-3 my-4 movie-item"
@@ -16,8 +16,7 @@ const MovieTvShow = ({tipo, poster_path, id, title, overview, name}) => (
                 <Link className="d-block" to={`/${tipo}/${id}`}>{title === undefined ? name : title}</Link>
             </header>
             <p>{overview}</p>
-            <p><button onClick={tipo === 'movies' ? () => moviesActions.deleteMovie(id) :
-             () => tvShowsActions.deleteTvShow(id)}>Eliminar</button></p>
+            <p><button className="btn btn-danger" onClick={func} data-id={id}>Eliminar</button></p>
         </div>
     </article>
 )

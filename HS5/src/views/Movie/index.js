@@ -24,6 +24,13 @@ class Movie extends React.Component {
         this.setState({movie})
     }
 
+    hacerComentario = e => {
+        const { movieActions, match } = this.props
+        const comentario = document.querySelector(".comentario").value;
+        const user = document.querySelector(".user").value;
+        movieActions.comentar(match.params.id, comentario, user )      
+    }
+
     render() {
         const { movie } = this.state
 
@@ -52,11 +59,14 @@ class Movie extends React.Component {
                 <button>
                 <Link className="d-block" to={`/movies/${movie.id}/recomendadas`}>Recomendaciones</Link>
                 </button>
-                <button>Comentarios</button>
+                <button>
+                <Link className="d-block" to={`/movies/${movie.id}/comentarios`}>Comentarios</Link>
+                </button>
 
                 <div className="coment">
-                    <textarea name="" className="comentario" cols="100" rows="5"></textarea>
-                    <p><button onClick="">Comentar</button></p>
+                    <p><input type="text" className="user" id="" placeholder="username" required/></p>
+                    <textarea name="" className="comentario" cols="100" rows="5" placeholder="Añadir comentario" required></textarea>
+                    <p><button onClick={() => this.hacerComentario()}>Comentar</button></p>
                 </div>
             </section>
         )

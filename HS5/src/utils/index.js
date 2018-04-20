@@ -13,6 +13,12 @@ export const moviesURL = {
     },
     recomendadas: id => {
         return `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=1`
+    },
+    comentarios: id => {
+        return `http://localhost:3010/comments`
+    },
+    obtenerComentarios: id => {
+        return `http://localhost:3010/comments?tipo=movie&movieId=${id}`
     }
 }
 
@@ -28,5 +34,11 @@ export const tvShowsURL = {
     },
     recomendadas: id => {
         return `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.REACT_APP_TMDB_API_KEY}&page=1`
+    },
+    comentarios: id => {
+        return `http://localhost:3010/comments`
+    },
+    obtenerComentarios: id => {
+        return `http://localhost:3010/comments?tipo=tvshow&tvShowId=${id}`
     }
 }
